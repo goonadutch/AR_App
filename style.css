@@ -65,6 +65,7 @@ body {
 	width: 20px;
 	height: 20px;
 }
+
 .form-section {
 	display: flex;
 	flex-direction: column;
@@ -79,8 +80,7 @@ body {
 	margin-top: 8px;
 }
 
-.form-section select,
-.form-section input[type="file"] {
+.form-section select {
 	padding: 10px 12px;
 	border: 1px solid #d2d2d7;
 	border-radius: 10px;
@@ -110,6 +110,38 @@ body {
 
 #submit-btn:active {
 	background: #0058b0;
+}
+
+#camera-btn,
+#capture-btn,
+#retake-btn {
+	padding: 10px 12px;
+	border: 1px solid #d2d2d7;
+	border-radius: 10px;
+	background: #fafafa;
+	color: #1d1d1f;
+	font-size: 15px;
+	cursor: pointer;
+	-webkit-border-radius: 10px;
+}
+
+#camera-video {
+	width: 100%;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+#preview-section {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	-webkit-box-orient: vertical;
+}
+
+#preview-img {
+	width: 100%;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
 }
 
 .status-section {
