@@ -39,6 +39,7 @@ async function handleSubmit() {
 
 	try {
 		const usdzUrl = await runInference(selectedPhoto)
+		showResult(usdzUrl)
 		setStatus("")
 	} catch (err) {
 		setStatus("Something went wrong: " + err.message)
@@ -51,4 +52,10 @@ async function handleSubmit() {
 // Hugging Face Space once it is deployed.
 async function runInference(photoFile) {
 	throw new Error("backend not connected yet")
+}
+
+function showResult(usdzUrl) {
+	const arLink = document.getElementById("ar-link")
+	arLink.href = usdzUrl
+	resultSection.hidden = false
 }
