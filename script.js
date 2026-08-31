@@ -3,6 +3,7 @@ const photoInput = document.getElementById("photo")
 const submitBtn = document.getElementById("submit-btn")
 const statusSection = document.getElementById("status-section")
 const statusText = document.getElementById("status-text")
+const resultSection = document.getElementById("result-section")
 
 let selectedCategory = categorySelect.value
 let selectedPhoto = null
