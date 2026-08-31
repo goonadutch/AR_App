@@ -36,4 +36,19 @@ async function handleSubmit() {
 	resultSection.hidden = true
 	submitBtn.disabled = true
 	setStatus("Generating model, this can take a minute...")
+
+	try {
+		const usdzUrl = await runInference(selectedPhoto)
+		setStatus("")
+	} catch (err) {
+		setStatus("Something went wrong: " + err.message)
+	} finally {
+		submitBtn.disabled = false
+	}
+}
+
+// Backend not connected yet. Replace this with a real call to the
+// Hugging Face Space once it is deployed.
+async function runInference(photoFile) {
+	throw new Error("backend not connected yet")
 }
