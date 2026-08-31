@@ -87,3 +87,10 @@ body {
 #submit-btn:active {
 	background: #0058b0;
 }
+
+.status-section {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 14px;
+	color: #6e6e73;
+}
