@@ -88,8 +88,8 @@ async function handleSubmit() {
 	setStatus("Generating model, this can take a minute...")
 
 	try {
-		const usdzUrl = await runInference(selectedPhoto)
-		showResult(usdzUrl)
+		const glbUrl = await runInference(selectedPhoto)
+		showResult(glbUrl)
 		setStatus("")
 	} catch (err) {
 		setStatus("Something went wrong: " + err.message)
@@ -104,8 +104,8 @@ async function runInference(photoFile) {
 	throw new Error("backend not connected yet")
 }
 
-function showResult(usdzUrl) {
-	const arLink = document.getElementById("ar-link")
-	arLink.href = usdzUrl
+function showResult(glbUrl) {
+	const modelViewer = document.getElementById("model-viewer")
+	modelViewer.src = glbUrl
 	resultSection.hidden = false
 }
