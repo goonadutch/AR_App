@@ -21,4 +21,9 @@ function updateSubmitState() {
 	submitBtn.disabled = !selectedPhoto
 }
 
+function setStatus(message) {
+	statusSection.hidden = !message
+	statusText.textContent = message
+}
+
 updateSubmitState()
