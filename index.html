@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>AR Mesh Viewer</title>
 	<link rel="stylesheet" href="style.css">
+	<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 <body>
 	<main class="app">
@@ -47,10 +48,7 @@
 		</section>
 
 		<section id="result-section" class="result-section" hidden>
-			<a id="ar-link" rel="ar" href="#">
-				<img src="https://developer.apple.com/assets/elements/icons/ar-quick-look/ar-quick-look-96x96_2x.png" alt="">
-				View in AR
-			</a>
+			<model-viewer id="model-viewer" ar ar-modes="webxr scene-viewer quick-look" camera-controls></model-viewer>
 		</section>
 	</main>
 
