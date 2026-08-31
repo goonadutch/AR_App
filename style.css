@@ -41,6 +41,30 @@ body {
 	color: #6e6e73;
 }
 
+.result-section {
+	margin-top: 20px;
+	text-align: center;
+}
+
+#ar-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 20px;
+	background: #1d1d1f;
+	color: #ffffff;
+	text-decoration: none;
+	border-radius: 10px;
+	font-size: 15px;
+	font-weight: 600;
+	-webkit-border-radius: 10px;
+	-webkit-box-align: center;
+}
+
+#ar-link img {
+	width: 20px;
+	height: 20px;
+}
 .form-section {
 	display: flex;
 	flex-direction: column;
