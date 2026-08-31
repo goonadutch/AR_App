@@ -25,3 +25,18 @@ body {
 	-webkit-box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 	-webkit-border-radius: 16px;
 }
+
+.app-header {
+	margin-bottom: 24px;
+}
+
+.app-header h1 {
+	font-size: 22px;
+	font-weight: 600;
+	margin-bottom: 4px;
+}
+
+.app-header p {
+	font-size: 14px;
+	color: #6e6e73;
+}
