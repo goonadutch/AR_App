@@ -54,3 +54,14 @@ body {
 	color: #6e6e73;
 	margin-top: 8px;
 }
+
+.form-section select,
+.form-section input[type="file"] {
+	padding: 10px 12px;
+	border: 1px solid #d2d2d7;
+	border-radius: 10px;
+	font-size: 15px;
+	background: #fafafa;
+	-webkit-border-radius: 10px;
+	-webkit-appearance: none;
+}
