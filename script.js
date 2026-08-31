@@ -98,10 +98,16 @@ async function handleSubmit() {
 	}
 }
 
-// Backend not connected yet. Replace this with a real call to the
-// Hugging Face Space once it is deployed.
+const SPACE_ID = "Neha03/spar-3d-mesh-generator"
+
 async function runInference(photoFile) {
-	throw new Error("backend not connected yet")
+	const { Client } = await import("https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js")
+	const client = await Client.connect(SPACE_ID)
+	const result = await client.predict("/predict", {
+		photo: photoFile,
+		category: selectedCategory,
+	})
+	return result.data[0].url
 }
 
 function showResult(glbUrl) {
