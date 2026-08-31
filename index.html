@@ -26,8 +26,18 @@
 				<option value="wardrobe">Wardrobe</option>
 			</select>
 
-			<label for="photo">Photo</label>
-			<input type="file" id="photo" accept="image/*" capture="environment">
+			<label>Photo</label>
+			<button id="camera-btn" type="button">Take Photo</button>
+
+			<video id="camera-video" playsinline autoplay hidden></video>
+			<canvas id="camera-canvas" hidden></canvas>
+
+			<button id="capture-btn" type="button" hidden>Capture</button>
+
+			<div id="preview-section" hidden>
+				<img id="preview-img" alt="captured photo">
+				<button id="retake-btn" type="button">Retake</button>
+			</div>
 
 			<button id="submit-btn" type="button">Generate Model</button>
 		</section>
