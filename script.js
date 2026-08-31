@@ -27,3 +27,13 @@ function setStatus(message) {
 }
 
 updateSubmitState()
+
+submitBtn.addEventListener("click", handleSubmit)
+
+async function handleSubmit() {
+	if (!selectedPhoto) return
+
+	resultSection.hidden = true
+	submitBtn.disabled = true
+	setStatus("Generating model, this can take a minute...")
+}
