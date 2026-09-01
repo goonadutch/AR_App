@@ -122,23 +122,27 @@ async function handleSubmit() {
 	}
 }
 
-const SERVER_URL = "PASTE_YOUR_NGROK_URL_HERE"
+const SPACE_ID = "Neha03/TripoSR"
 
 async function runInference(photoFile) {
-	const formData = new FormData()
-	formData.append("photo", photoFile, "photo.jpg")
+	const { Client } = await import("https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js")
 
-	const response = await fetch(SERVER_URL + "/generate", {
-		method: "POST",
-		body: formData,
-	})
+	const preprocessClient = await Client.connect(SPACE_ID)
+	const preprocessResult = await preprocessClient.predict("/preprocess", [
+		photoFile,
+		true, // Remove Background
+		0.85, // Foreground Ratio
+	])
+	const processedImage = preprocessResult.data[0]
 
-	if (!response.ok) {
-		throw new Error("Server returned " + response.status)
-	}
+	const generateClient = await Client.connect(SPACE_ID)
+	const generateResult = await generateClient.predict("/generate", [
+		processedImage,
+		256, // Marching Cubes Resolution
+	])
+	const glbFile = generateResult.data[1] // [obj, glb]
 
-	const blob = await response.blob()
-	return URL.createObjectURL(blob)
+	return glbFile.url
 }
 
 function showResult(glbUrl) {
