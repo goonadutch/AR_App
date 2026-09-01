@@ -126,16 +126,17 @@ const SPACE_ID = "Neha03/TripoSR"
 
 async function runInference(photoFile) {
 	const { Client } = await import("https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js")
-	const client = await Client.connect(SPACE_ID)
 
-	const preprocessResult = await client.predict("/preprocess", [
+	const preprocessClient = await Client.connect(SPACE_ID)
+	const preprocessResult = await preprocessClient.predict("/preprocess", [
 		photoFile,
 		true, // Remove Background
 		0.85, // Foreground Ratio
 	])
 	const processedImage = preprocessResult.data[0]
 
-	const generateResult = await client.predict("/generate", [
+	const generateClient = await Client.connect(SPACE_ID)
+	const generateResult = await generateClient.predict("/generate", [
 		processedImage,
 		256, // Marching Cubes Resolution
 	])
