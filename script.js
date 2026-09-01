@@ -98,16 +98,26 @@ async function handleSubmit() {
 	}
 }
 
-const SPACE_ID = "Neha03/spar-3d-mesh-generator"
+const SPACE_ID = "stabilityai/TripoSR"
 
 async function runInference(photoFile) {
 	const { Client } = await import("https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js")
 	const client = await Client.connect(SPACE_ID)
-	const result = await client.predict("/predict", {
-		photo: photoFile,
-		category: selectedCategory,
-	})
-	return result.data[0].url
+
+	const preprocessResult = await client.predict("/preprocess", [
+		photoFile,
+		true, // Remove Background
+		0.85, // Foreground Ratio
+	])
+	const processedImage = preprocessResult.data[0]
+
+	const generateResult = await client.predict("/generate", [
+		processedImage,
+		256, // Marching Cubes Resolution
+	])
+	const glbFile = generateResult.data[1] // [obj, glb]
+
+	return glbFile.url
 }
 
 function showResult(glbUrl) {
