@@ -1,5 +1,6 @@
 const categorySelect = document.getElementById("category")
 const cameraBtn = document.getElementById("camera-btn")
+const fileInput = document.getElementById("file-input")
 const cameraVideo = document.getElementById("camera-video")
 const cameraCanvas = document.getElementById("camera-canvas")
 const captureBtn = document.getElementById("capture-btn")
@@ -34,17 +35,39 @@ cameraBtn.addEventListener("click", () => {
 	openCamera().catch((err) => setStatus("Could not open camera: " + err.message))
 })
 
+fileInput.addEventListener("change", () => {
+	const file = fileInput.files[0]
+	if (!file) return
+	stopCamera()
+	selectedPhoto = file
+	previewImg.src = URL.createObjectURL(file)
+	cameraVideo.hidden = true
+	captureBtn.hidden = true
+	cameraBtn.hidden = false
+	previewSection.hidden = false
+	updateSubmitState()
+})
+
 function updateSubmitState() {
 	submitBtn.disabled = !selectedPhoto
 }
 
 function capturePhoto() {
+	if (!cameraVideo.videoWidth || !cameraVideo.videoHeight) {
+		setStatus("Camera is not ready yet, wait a moment and try again.")
+		return
+	}
+
 	cameraCanvas.width = cameraVideo.videoWidth
 	cameraCanvas.height = cameraVideo.videoHeight
 	const ctx = cameraCanvas.getContext("2d")
 	ctx.drawImage(cameraVideo, 0, 0)
 
 	cameraCanvas.toBlob((blob) => {
+		if (!blob) {
+			setStatus("Could not capture photo, try again.")
+			return
+		}
 		selectedPhoto = blob
 		previewImg.src = URL.createObjectURL(blob)
 		stopCamera()
@@ -66,6 +89,7 @@ captureBtn.addEventListener("click", capturePhoto)
 
 retakeBtn.addEventListener("click", () => {
 	selectedPhoto = null
+	fileInput.value = ""
 	previewSection.hidden = true
 	updateSubmitState()
 	openCamera().catch((err) => setStatus("Could not open camera: " + err.message))
@@ -98,7 +122,7 @@ async function handleSubmit() {
 	}
 }
 
-const SPACE_ID = "Neha03/TripoSR"
+const SPACE_ID = "stabilityai/TripoSR"
 
 async function runInference(photoFile) {
 	const { Client } = await import("https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js")
