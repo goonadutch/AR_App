@@ -133,6 +133,10 @@ body {
 	-webkit-box-orient: vertical;
 }
 
+#preview-section[hidden] {
+	display: none;
+}
+
 #preview-img {
 	width: 100%;
 	border-radius: 10px;
