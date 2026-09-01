@@ -98,7 +98,7 @@ async function handleSubmit() {
 	}
 }
 
-const SPACE_ID = "stabilityai/TripoSR"
+const SPACE_ID = "Neha03/TripoSR"
 
 async function runInference(photoFile) {
 	const { Client } = await import("https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js")
